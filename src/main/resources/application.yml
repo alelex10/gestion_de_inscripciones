@@ -1,0 +1,41 @@
+#ENV PRODUCTION
+image:
+  directory:
+    event: images/events/
+    profile: images/profiles/
+
+spring:
+  # Dev
+  #  datasource:
+  #    url: jdbc:mysql://localhost:3306/squad
+  #    username: root
+  #    password: 123
+  #    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  #Production
+  datasource:
+    url: jdbc:${DB}
+    username: ${DBUSERNAME}
+    password: ${DBPASS}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #[5/9] seteo configuraciones del remitente del email
+  # configuraciones del remitente del email
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${email}
+    password: ${email_password}
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+#email de ejemplo para probar /resetPassword
+mail: ${email_user_ejemplo}
